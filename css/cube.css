@@ -1,0 +1,101 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    --offset: max(1rem, 3vw);
+    --boxSize: clamp(2.5rem, 10vw, 200px);
+    --boxSize: 15vw;
+    margin: 0;
+    padding: var(--offset);
+    min-height: 300vh;
+    background-color: pink;
+    font-family: "Helvetica", sans-serif;
+    animation: colorChange auto linear;
+    animation-timeline: scroll(root block);
+  }
+  
+  .wrapper {
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: var(--offset);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+  }
+  
+  h1 {
+    flex: 1 0 100%;
+    animation: clip auto linear;
+    animation-timeline: scroll(root block);
+    font-size: clamp(2rem, 4vw + 1rem, 6rem);
+  }
+  
+  @property --i {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+  }
+  
+  .box {
+    --i: 1;
+    --angle: calc((var(--i) - 1) * (360deg / 5));
+    --amplitude: 9vw;
+    --x: calc(var(--i) * var(--boxSize));
+  
+    width: var(--boxSize);
+    aspect-ratio: 1;
+    background: radial-gradient(circle at 25% 50%, black 10%, transparent 0),
+      radial-gradient(circle at 75% 50%, black 10%, transparent 0),
+      radial-gradient(circle at 50% 0, black 10%, transparent 0) deeppink;
+    background-position: center center, center center,
+      center calc(var(--boxSize) * 0.6), center center;
+    background-size: 100% 100%, 100% 100%, 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: max(10%, 0.2rem);
+    border: min(5px, 1vw) solid;
+    animation: move auto linear, spin auto linear;
+    animation-timeline: scroll(root block);
+    translate: calc(var(--x) - var(--boxSize)) calc(
+        sin(var(--angle)) * var(--amplitude)
+      );
+  }
+  
+  @keyframes move {
+    0% {
+      --i: 1;
+    }
+    100% {
+      --i: 6;
+    }
+  }
+  
+  @keyframes spin {
+    100% {
+      rotate: 360deg;
+    }
+  }
+  
+  @keyframes colorChange {
+    100% {
+      background-color: turquoise;
+    }
+  }
+  
+  @keyframes clip {
+    0% {
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    }
+    100% {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+  }
+  
+  a:hover {
+
+    color: rgb(0, 255, 21);
+
+  }

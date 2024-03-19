@@ -1,0 +1,65 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    width: 100%;
+    min-height: 300vh;
+    margin: 0;
+    background: linear-gradient(to bottom, #2d2a82, lightblue);
+    background-size: 100% 300vh;
+  }
+  
+  .progress {
+    position: fixed;
+    top: 3rem;
+    left: 3rem;
+    width: 3rem;
+    height: auto;
+    fill: currentColor;
+    z-index: 1;
+    offset-path: path(
+      "M.5 122.7s24.7-275 276.9 0c327.1 356.7 266.1-330.3 548-33.3 256.9 270.7 271.1 0 271.1 0"
+    );
+    animation: move auto linear;
+    animation-timeline: scroll(root);
+  }
+  
+  .cloud {
+    width: 12vw;
+    height: auto;
+    position: absolute;
+    top: 5vh;
+    left: 60vw;
+    fill: rgb(255 255 255 / 0.5);
+  }
+  
+  .cloud:nth-child(2n) {
+    top: 100vh;
+    left: 15vw;
+  }
+  
+  .cloud:nth-child(3n) {
+    top: 160vh;
+    left: 70vw;
+  }
+  
+  @keyframes move {
+    0% {
+      offset-distance: 0%;
+    }
+    100% {
+      offset-distance: 100%;
+    }
+
+}
+  
+a {
+    color: black;
+
+}
+
+a:hover {
+    color: yellow;
+}
+
