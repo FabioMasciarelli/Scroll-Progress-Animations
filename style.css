@@ -1,0 +1,218 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    font-family: sans-serif;
+    background-color: #222222;
+}
+
+.py50 {
+    padding: 50px 0;
+}
+
+.py30 {
+    padding: 30px 0;
+}
+
+.pt15 {
+    padding-top: 15px;
+}
+
+.container{
+    width: 80%;
+    max-width: 1180px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+span{
+    color: transparent;
+    background: linear-gradient(74deg,#4285f4 0,#9b72cb 9%,#d96570 20%,#d96570 24%,#9b72cb 35%,#4285f4 44%,#9b72cb 50%,#d96570 56%,#131314 75%,#131314 100%);
+    background-size: 400% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 4rem;
+}
+
+
+/* BARRA SEMPLICE */
+section{
+    color: white;
+    width: 60%;
+}
+
+.container1{
+    width: 70%;
+    color: white;
+    height: 300px;
+    overflow-y: scroll;
+    margin: 0 auto;
+}
+
+.progress {
+  height: 1rem;
+  background: yellow;
+  position: sticky; /* * */
+  top: 0;
+  left: 0;
+  width: 100%;
+  transform-origin: 0 50%;
+  animation: scaleProgress auto linear; /* * */
+  animation-timeline: scroll(nearest);  /* * */
+}
+
+/* * */
+@keyframes scaleProgress {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+/* PALLINA */
+
+.progress-ball {
+  width: 3rem;
+  height: 3rem;
+  position: fixed;
+  top: calc(100vh - 4rem);
+  left: 1rem;
+  background: blue;
+  border-radius: 50%;
+  animation: bounce auto linear 6 alternate;
+  animation-timeline: scroll(root);
+}
+
+@keyframes bounce {
+  100% {
+    transform: translateY(-80vh);
+  }
+}
+
+/* NON ANCESTOR */
+
+.container-non-ancestor {
+  line-height: 1.5;
+  min-height: 100vh;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  align-content: center;
+  timeline-scope: --scale-progress;
+  animation: colorChange auto linear forwards;
+  animation-timeline: --scale-progress;
+}
+.scroller {
+  position: relative;
+  max-width: 300px;
+  max-height: 300px;
+  overflow: scroll;
+  border: 1px solid;
+  padding: 1rem;
+  background: white;
+  scroll-timeline: --scale-progress;
+}
+
+.progress-wrapper {
+  border: 2px solid black;
+  padding: 0.5rem;
+}
+
+.progress-bar {
+  width: 5rem;
+  height: 100%;
+  background: black;
+  transform-origin: center 100%;
+  animation: scaleBall auto linear forwards;
+  animation-timeline: --scale-progress;
+}
+
+@keyframes colorChange {
+  0% {
+    background-color: deeppink;
+  }
+  100% {
+    background-color: turquoise;
+  }
+}
+
+@keyframes scaleBall {
+  0% {
+    scale: 1 0;
+  }
+
+  100% {
+    scale: 1 1;
+  }
+} 
+
+/* MOTION PATH */
+
+.container-big{
+    max-width: 75%;
+    height: 600px;
+}
+
+.container-motion {
+  width: 100%;
+  min-height: 300vh;
+  margin: 0;
+  background: linear-gradient(to bottom, #2d2a82, lightblue);
+  background-size: 100% 300vh;
+  position: relative;
+  overflow-y: scroll;
+}
+
+.progress-motion {
+  position: absolute;
+  top: 3rem;
+  left: 3rem;
+  width: 3rem;
+  height: auto;
+  fill: currentColor;
+  z-index: 1;
+  offset-path: path(
+    "M.5 122.7s24.7-275 276.9 0c327.1 356.7 266.1-330.3 548-33.3 256.9 270.7 271.1 0 271.1 0"
+  );
+  animation: move auto linear;
+  animation-timeline: scroll(nearest);
+}
+/* 
+.cloud {
+  width: 12vw;
+  height: auto;
+  position: absolute;
+  top: 5vh;
+  left: 60vw;
+  fill: rgb(255 255 255 / 0.5);
+}
+
+.cloud:nth-child(2n) {
+  top: 100vh;
+  left: 15vw;
+}
+
+.cloud:nth-child(3n) {
+  top: 160vh;
+  left: 70vw;
+}
+ */
+@keyframes move {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+
